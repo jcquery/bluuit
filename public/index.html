@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html ng-app="bluuitApp">
+  <head>
+    <meta charset="utf-8">
+    <title>bluuit: the back page of the internet</title>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body ng-controller="LoginCtrl as logCtrl">
+      <!-- navbar -->
+      <nav>
+        <div class="nav-wrapper blue">
+          <a href="/#/" style="margin-left:1rem" class="brand-logo">bluuit</a>
+          <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li ng-if="!logCtrl.isLoggedIn()"><a ng-href="#/register/">Register</a></li>
+            <li ng-if="!logCtrl.isLoggedIn()"><a href="#/login/">Login</a></li>
+            <li ng-if="logCtrl.isLoggedIn()"><a ng-click="logCtrl.logout()">Logout</a></li>
+          </ul>
+
+        </div>
+        </nav>
+        <!-- sidenav -->
+        <header ng-controller="NavCtrl as navCtrl">
+          <ul id="slide-out" class="side-nav fixed">
+            <li class="row"><img class="col s6 offset-s3" src="./icon175x175.png"></li>
+            <li style="text-align: center; font-size: 20px">TOPICS</li>
+            <li class="addbuttondiv" ng-if="logCtrl.isLoggedIn()"><a class="modal-trigger waves-effect waves-light btn addbutton blue white-text" href="#newTopic">New</a></li>
+            <li>
+                <div class="row">
+                  <div class="col s12">
+                    <div class="card-panel white topiccard">
+                      <form>
+                        <i style="position:absolute; margin-top: -12px; margin-left: -12px" class="material-icons">search</i>
+                        <input id="search" type="text" ng-model="navCtrl.sortBy" ng-change="navCtrl.updateSort()">
+                      </form>
+                    </div>
+                  </div>
+                </div>
+            </li>
+            <li style="text-align: center; font-size: 20px">POSTS</li>
+            <li>
+              <div class="card-panel white">
+                <form>
+                  <p>
+                    Rating
+                    <input name="group1" type="radio" id="highrating" value="-rating" ng-click="navCtrl.updatePosts('-rating')" checked/>
+                    <label for="highrating">High</label>
+                    <input name="group1" type="radio" id="lowrating" value="rating" ng-click="navCtrl.updatePosts('rating')"/>
+                    <label for="lowrating">Low</label>
+                  </p>
+                  <p>
+                    Date
+                    <input name="group1" type="radio" id="recentdate" value="-createdAt" ng-click="navCtrl.updatePosts('-createdAt')"/>
+                    <label for="recentdate">New</label>
+                    <input name="group1" type="radio" id="olddate" value="createdAt" ng-click="navCtrl.updatePosts('createdAt')"/>
+                    <label for="olddate">Old</label>
+                  </p>
+                </form>
+              </div>
+            </li>
+          </ul>
+          <!-- new topic -->
+          <div id="newTopic" class="modal modal-fixed-footer">
+            <div class="modal-content">
+              <div class="row">
+                <form class="col s12" name="newTopic">
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <input
+                        name="topic_name"
+                        id="topic_name"
+                        type="text" ng-model="navCtrl.newTopic.name"
+                        required ng-minlength=3>
+                      <label for="topic_name">Topic Name</label>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <a
+                href=""
+                class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="navCtrl.createTopic()" ng-class="{disabled: newTopic.topic_name.$invalid}">
+                Submit
+              </a>
+            </div>
+          </div>
+        </header>
+
+      <main ng-view ng-controller="ModalCtrl"></main>
+
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/app.config.js"></script>
+  </body>
+</html>

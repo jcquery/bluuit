@@ -1,0 +1,120 @@
+.disabled {
+    pointer-events: none;
+}
+
+nav, main, footer {
+  padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  nav, main, footer {
+    padding-left: 0;
+  }
+}
+
+p {
+  margin-top: 0px;
+}
+
+h6 {
+  font-size: 1.4rem;
+}
+
+#newpostmodal {
+  z-index: 999;
+}
+
+#sidenav-overlay {
+  z-index: 800;
+}
+
+.side-nav {
+  z-index: 900;
+}
+
+.topicheader {
+  font-size: 20px;
+  margin-left: 15px;
+}
+
+.postbutton {
+  margin-bottom: 10px;
+}
+
+.score {
+  font-weight:700;
+}
+
+.postdate {
+  font-size: .8rem;
+}
+
+[type="radio"]:checked + label:after,
+[type="radio"].with-gap:checked + label:before,
+[type="radio"].with-gap:checked + label:after {
+  border: 2px solid #2196f3;
+}
+
+[type="radio"]:checked + label:after,
+[type="radio"].with-gap:checked + label:after {
+  background-color: #2196f3;
+  z-index: 0;
+}
+
+input[type=text]:focus {
+  border-bottom: 1px solid #2196f3;
+  box-shadow: 0 1px 0 0 #2196f3;
+}
+
+.container {
+  margin-top: 15px;
+  width: 90%;
+}
+
+.card.horizontal .card-image img {
+  max-width: 10rem;
+  max-height: 10rem;
+  width: auto;
+  height: auto;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #2196f3;
+  box-shadow: 0 1px 0 0 #2196f3;
+}
+
+.input-field input[type=text]:focus + label {
+  color: #2196f3;
+}
+
+.input-field input[type=password]:focus + label {
+  color: #2196f3;
+}
+
+.input-field input[type=url]:focus + label {
+  color: #2196f3;
+}
+
+.input-field input.valid {
+  border-bottom: 1px solid #90caf9;
+  box-shadow: 0 1px 0 0 #90caf9;
+}
+
+/*.addbuttondiv {
+  margin-bottom: 40px;
+}
+
+.addbutton {
+  margin-top: 0px;
+}
+
+.topiccard {
+  margin-bottom: 0px;
+}*/

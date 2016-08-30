@@ -1,0 +1,65 @@
+<div class="container" ng-controller="postController as postCtrl">
+  <!-- topic manager -->
+  <div class="row">
+    <div class="col s12 l6" ng-repeat="topicList in tCtrl.mainList()">
+      <ul class="collapsible col s12 blue topic topicul" data-collapsible="accordion" ng-repeat="topic in topicList | filter: {name: tCtrl.sortBy()}" ng-init="$last && postCtrl.initPosts()">
+        <li>
+          <div class="collapsible-header blue white-text topicheader">{{ topic.name }}</div>
+          <div class="collapsible-body">
+            <div class="col s12">
+              <div class="card horizontal" ng-repeat="post in postCtrl.getPosts(topic.id) | orderBy: tCtrl.postSortBy()">
+                <div class="card-image">
+                  <img ng-src="{{ post.imageUrl }}">
+                </div>
+                <div class="card-stacked">
+                  <div class="card-content">
+                    <h6 class="header">{{ post.title }}</h6>
+                    <p>{{ post.description }}</p>
+                    <span class="postdate">
+                      {{ post.createdAt | date: 'medium'}}
+                    </span>
+                  </div>
+                  <div class="card-action">
+                    <a href="" class="blue-text" ng-if="logCtrl.isLoggedIn()" ng-click="postCtrl.upvote(post)">Good!</a>
+                    <a href="" ng-if="logCtrl.isLoggedIn()" class="blue-text" ng-click="postCtrl.downvote(post)">Bad!</a>
+                    Score: <span class="score">{{ post.rating }}</span>
+                  </div>
+                </div>
+              </div>
+              <a class="waves-effect waves-blue btn-flat blue-text white postbutton" ng-if="logCtrl.isLoggedIn()" ng-click="postCtrl.openPost(topic.id)">New Post</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- new post -->
+  <div id="newpostmodal" class="modal bottom-sheet">
+    <div class="modal-content">
+      <div class="row">
+        <form name="newPost" class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="post_title" type="text" name="post_title" ng-model="postCtrl.newPost.title" ng-minlength=3 required>
+              <label for="post_title">Post Title</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="post_desc" type="text" class="validate" name="post_desc" ng-model="postCtrl.newPost.desc" required ng-minlength=3 ng-maxlength=50>
+              <label for="post_desc">Topic Description</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="img_url" type="url" class="validate" name="img_url" ng-model="postCtrl.newPost.img" required>
+              <label for="img_url">Image URL</label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="postCtrl.postNewPost(postCtrl.currentId)"  ng-class="{disabled: newPost.post_title.$invalid || newPost.post_desc.$invalid || newPost.img_url.$invalid}">Submit</a>
+    </div>
+  </div>
+
+</div>

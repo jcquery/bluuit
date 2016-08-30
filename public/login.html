@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <form class="col s12" name="login_form" ng-submit="authCtrl.login()">
+    <div class="col s12 m6 input-field">
+      <input id="username" type="text" class="validate" name="username" required ng-minlength=3 ng-maxlength=31
+      ng-model="authCtrl.user.username">
+      <label for="username">Username</label>
+    </div>
+    <div class="col s12 m6 input-field">
+      <input id="password" type="password" class="validate" name="password" ng-model="authCtrl.user.password"
+      required ng-minlength=8>
+      <label for="password">Password</label>
+    </div>
+    <input type="submit"
+      href=""
+      class="modal-action modal-close waves-effect waves-blue btn-flat" ng-class="{disabled: login_form.username.$invalid ||
+      login_form.password.$invalid}">
+    </input>
+  </form>
+  </div>
+</div>
